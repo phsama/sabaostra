@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 [autoload]
 
 StoryState="*res://src/autoload/story_state.gd"
+SaveService="*res://src/autoload/save_service.gd"
 
 [debug]
 
