@@ -19,7 +19,8 @@ Antes de qualquer tarefa, leia [docs/biblia.md](docs/biblia.md) (design) e [docs
 Godot 4.7.2 stable. Na máquina do Ph, o binário está em `C:\Users\Philipe\tools\godot\Godot_v4.7.2-stable_win64_console.exe` (use o `_console` para ler a saída no terminal).
 
 ```bash
-# importar o projeto (primeira vez, ou depois de adicionar assets)
+# importar o projeto: primeira vez, depois de adicionar assets e sempre antes de commitar
+# (gera os .uid e .import dos arquivos novos, que vão no mesmo commit)
 "$GODOT" --headless --path . --import
 
 # rodar todos os testes headless (0 = verde, 100 = falha, 101 = warning)
