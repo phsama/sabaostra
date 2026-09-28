@@ -18,5 +18,9 @@ func test_pixels_stay_crisp() -> void:
 	assert_bool(ProjectSettings.get_setting("rendering/2d/snap/snap_2d_transforms_to_pixel")).is_true()
 
 
+func test_story_state_autoload_is_running() -> void:
+	assert_object(get_tree().root.get_node_or_null("StoryState")).is_not_null()
+
+
 func test_renderer_is_compatibility() -> void:
 	assert_str(ProjectSettings.get_setting("rendering/renderer/rendering_method")).is_equal("gl_compatibility")

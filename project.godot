@@ -13,6 +13,10 @@ config_version=5
 config/name="Sabaostra"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
+[autoload]
+
+StoryState="*res://src/autoload/story_state.gd"
+
 [debug]
 
 gdscript/warnings/exclude_addons=true

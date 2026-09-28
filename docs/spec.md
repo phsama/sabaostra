@@ -207,6 +207,9 @@ Esta seção vira o `CLAUDE.md` do repositório, com os comandos de rodar e test
 | 28/09/2026 | 1 | gdUnit4 6.2.1 vendorizado em `addons/gdUnit4`; o CI usa essa cópia (`version: installed`) | Mesma versão no editor, no runner local e no CI. |
 | 28/09/2026 | 1 | Warnings de tipagem GDScript (`untyped_declaration`, `unsafe_property_access`, `unsafe_method_access`, `unsafe_cast`, `unsafe_call_argument`) no nível erro; addons excluídos | Cumpre o princípio 6 no parser, sem depender de revisão. |
 | 28/09/2026 | 1 | O runner local roda com `--ignoreHeadlessMode` | O gdUnit4 recusa rodar headless por padrão; a spec exige headless. Consequência: `InputEvent` não chega ao jogo em headless, então teste de cena simula pela ação ou chama o método direto. |
+| 28/09/2026 | 2 | `StoryState` recusa NPC ou marcador desconhecido: `push_error` e nada muda; `get_marker` devolve 0. Os marcadores válidos são `friendship`, `trust` e `fear` | Erro de digitação num `.dialogue` aparece no log em vez de criar um NPC fantasma no save. Se amizade e confiança virarem um eixo só (risco da bíblia), a mudança fica em `MARKERS` e nos dados. |
+| 28/09/2026 | 2 | `marker_changed` só é emitido quando o valor muda; `from_dict` não emite | O `MapMood` não recalcula à toa quando o marcador já está no limite; ao carregar um save, cada mapa lê o estado no próprio `_ready`. |
+| 28/09/2026 | 2 | Teste unitário não verifica a mensagem de `push_error`, só o efeito | O `assert_error` do gdUnit4 exige `await`, e teste unitário é sem `await`. |
 
 ### Pendências de decisão (avisadas ao Ph na tarefa 1)
 

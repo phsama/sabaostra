@@ -23,10 +23,10 @@ Godot 4.7.2 stable. Na máquina do Ph, o binário está em `C:\Users\Philipe\too
 "$GODOT" --headless --path . --import
 
 # rodar todos os testes headless (0 = verde, 100 = falha, 101 = warning)
-"$GODOT" --headless --path . -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -c -a res://tests
+"$GODOT" --headless --path . -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -c -a res://tests
 
 # rodar uma suíte
-"$GODOT" --headless --path . -s -d res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -a res://tests/unit/project_settings_test.gd
+"$GODOT" --headless --path . -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode -a res://tests/unit/project_settings_test.gd
 
 # checar um script sem rodar
 "$GODOT" --headless --path . --check-only -s res://caminho/do/script.gd
@@ -34,6 +34,8 @@ Godot 4.7.2 stable. Na máquina do Ph, o binário está em `C:\Users\Philipe\too
 # abrir o editor
 "$GODOT" --path . -e
 ```
+
+Não passe `-d` para o runner: com erro de parse, o Godot entra no debugger interativo e fica em loop, em vez de sair com código 105.
 
 `--ignoreHeadlessMode` é necessário porque o gdUnit4 recusa rodar headless por padrão. Em headless, `InputEvent` não chega ao jogo: teste de cena que precisa de input deve simular pela ação (`Input.action_press`) ou chamar o método direto. Isso ainda precisa ser confirmado na tarefa 5.
 
