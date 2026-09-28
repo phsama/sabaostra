@@ -10,6 +10,18 @@ var flags: Dictionary[String, Variant] = {}
 var markers: Dictionary[String, Dictionary] = {}
 
 
+func new_game(profiles: Array[NpcProfile]) -> void:
+	flags.clear()
+	markers.clear()
+	for profile in profiles:
+		var npc_markers: Dictionary[String, int] = {
+			"friendship": profile.friendship,
+			"trust": profile.trust,
+			"fear": profile.fear,
+		}
+		markers[profile.id] = npc_markers
+
+
 func adjust(npc_id: String, marker: String, delta: int) -> void:
 	if not _is_known(npc_id, marker):
 		return

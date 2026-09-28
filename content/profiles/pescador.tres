@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="NpcProfile" format=3]
+
+[ext_resource type="Script" uid="uid://dyhoqb8tavcy5" path="res://src/npc/npc_profile.gd" id="1_profile"]
+
+[resource]
+script = ExtResource("1_profile")
+id = "pescador"
+display_name = "NPC_PESCADOR"
+friendship = 3
+trust = 3
+fear = 3

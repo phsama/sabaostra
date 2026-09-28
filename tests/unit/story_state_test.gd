@@ -70,7 +70,32 @@ func test_round_trip_through_json_keeps_markers_as_int() -> void:
 	assert_int(typeof(copy.markers["pescador"]["fear"])).is_equal(TYPE_INT)
 
 
+func test_new_game_loads_levels_from_profiles() -> void:
+	state.new_game([_profile("mae", 2, 4, 1), _profile("princesa", 5, 1, 3)])
+	assert_dict(state.markers).is_equal({
+		"mae": {"friendship": 2, "trust": 4, "fear": 1},
+		"princesa": {"friendship": 5, "trust": 1, "fear": 3},
+	})
+
+
+func test_new_game_forgets_previous_run() -> void:
+	state.set_flag("tv_channel", 7)
+	state.new_game([_profile("mae", 2, 4, 1)])
+	assert_bool(state.has_flag("tv_channel")).is_false()
+	assert_bool(state.markers.has("pescador")).is_false()
+	assert_array(emitted).is_empty()
+
+
 func test_to_dict_is_a_copy() -> void:
 	var saved := state.to_dict()
 	state.adjust("pescador", "friendship", 1)
 	assert_int(saved["markers"]["pescador"]["friendship"]).is_equal(3)
+
+
+func _profile(id: String, friendship: int, trust: int, fear: int) -> NpcProfile:
+	var profile := NpcProfile.new()
+	profile.id = id
+	profile.friendship = friendship
+	profile.trust = trust
+	profile.fear = fear
+	return profile

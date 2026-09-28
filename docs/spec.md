@@ -210,6 +210,10 @@ Esta seção vira o `CLAUDE.md` do repositório, com os comandos de rodar e test
 | 28/09/2026 | 2 | `StoryState` recusa NPC ou marcador desconhecido: `push_error` e nada muda; `get_marker` devolve 0. Os marcadores válidos são `friendship`, `trust` e `fear` | Erro de digitação num `.dialogue` aparece no log em vez de criar um NPC fantasma no save. Se amizade e confiança virarem um eixo só (risco da bíblia), a mudança fica em `MARKERS` e nos dados. |
 | 28/09/2026 | 2 | `marker_changed` só é emitido quando o valor muda; `from_dict` não emite | O `MapMood` não recalcula à toa quando o marcador já está no limite; ao carregar um save, cada mapa lê o estado no próprio `_ready`. |
 | 28/09/2026 | 2 | Teste unitário não verifica a mensagem de `push_error`, só o efeito | O `assert_error` do gdUnit4 exige `await`, e teste unitário é sem `await`. |
+| 28/09/2026 | 3 | Níveis iniciais provisórios: 3 / 3 / 3 (amizade, confiança, medo) para mãe, pescador e princesa | Pedido do Ph: começar neutro e refinar depois, direto nos `.tres`. |
+| 28/09/2026 | 3 | `dialogue` e `start_title` do `NpcProfile` entram na tarefa 7 | O tipo `DialogueResource` só existe com o Dialogue Manager instalado; tipar como `Resource` agora e trocar depois seria retrabalho. |
+| 28/09/2026 | 3 | Os níveis no script do `NpcProfile` não têm valor padrão (int começa em 0, inválido) | Nenhum número de marcador fica em código, os `.tres` gravam o valor explicitamente, e um perfil não preenchido faz o teste de conteúdo falhar. |
+| 28/09/2026 | 3 | A validação dos perfis nasce em `tests/scene/dialogue_compile_test.gd`, que já confere `id` igual ao nome do arquivo, `display_name` e níveis de 1 a 5 | É o arquivo que a spec reserva para o teste de conteúdo; a tarefa 7 acrescenta a compilação dos `.dialogue` e a checagem de `start_title`. |
 
 ### Pendências de decisão (avisadas ao Ph na tarefa 1)
 
